@@ -1,4 +1,4 @@
-Table of contents
+Table of Contents
 =================
 * [My custom dwm build](#My-custom-dwm-build)
 * [Patches that I have applied](#Patches-that-I-have-applied)
