@@ -1,5 +1,8 @@
+# dwm-kostas
+
 Table of Contents
 =================
+* [dwm-kostas](#dwm-kostas)
 * [My custom dwm build](#My-custom-dwm-build)
 * [Patches that I have applied](#Patches-that-I-have-applied)
 * [Keybindings](#Keybindings)
