@@ -11,6 +11,8 @@ static const char *brightdown[] = { "/usr/bin/xbacklight", "-dec", "5", NULL };
 static const char *switchNvidia[] = { "/usr/bin/optimus-manager", "--no-confirm", "--switch", "nvidia", NULL };
 /* Switch to Intel GPU */
 static const char *switchIntel[] = { "/usr/bin/optimus-manager", "--no-confirm", "--switch", "intel", NULL };
+/* Extend to connected displays and move workspaces from disconnected ones */
+static const char *extendDisplay[] = { "/usr/bin/xrandr", "--output", "eDP-1-1", "--auto", "--output", "DP-1-1", "--right-of", "eDP-1-1", "--auto", NULL };
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
@@ -87,6 +89,7 @@ static Key keys[] = {
 	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  {.v = brightdown } },
 	{ MODKEY,						XK_n,	   spawn,		   {.v = switchNvidia } },
 	{ MODKEY,						XK_i,	   spawn,		   {.v = switchIntel } },
+	{ MODKEY,						XK_z,	   spawn,		   {.v = extendDisplay } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
