@@ -7,14 +7,16 @@ static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "togg
 /* brightness control */
 static const char *brightup[]   = { "/usr/bin/xbacklight", "-inc", "5", NULL };
 static const char *brightdown[] = { "/usr/bin/xbacklight", "-dec", "5", NULL };
+/* Switch to Nvidia GPU */
+static const char *switchNvidia[] = { "/usr/bin/optimus-manager", "--no-confirm", "--switch", "nvidia", NULL };
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=12" };
+static const char dmenufont[]       = "monospace:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -59,7 +61,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -81,6 +83,7 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  {.v = upvol   } },
 	{ 0,                            XF86XK_MonBrightnessUp,     spawn,  {.v = brightup } },
 	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  {.v = brightdown } },
+	{ MODKEY,						XK_n,	   spawn,		   {.v = switchNvidia } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
