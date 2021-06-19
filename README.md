@@ -4,3 +4,6 @@ Custom dwm build for my Linux install. I've decided to try out dynamic window ma
 # Patches that I have applied
 * Alpha - for transparency;
 * Fullgaps - for gaps between windows.
+
+# Keybindings
+In this section I will present keybindings that I use in my window manager.
