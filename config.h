@@ -19,6 +19,8 @@ static const char *printScreen[] = { "/usr/bin/screenshot", NULL };
 static const char *screenClipboard[] = { "/usr/bin/screenshot_clipboard", NULL };
 /* Refers to a script that lets paste clipboard to a file in a preselected location */
 static const char *pasteClipboard[] = { "/usr/bin/paste_clipboard", NULL };
+/* Lock screen */
+static const char *lockScreen[] = { "/usr/local/bin/slock", NULL };
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
@@ -96,6 +98,7 @@ static Key keys[] = {
 	{ 0,							XK_Print,					spawn,	{.v = printScreen } },
 	{ ShiftMask,					XK_Print,					spawn,	{.v = screenClipboard } },
 	{ MODKEY,						XK_Print,					spawn,	{.v = pasteClipboard } },
+	{ MODKEY,						XK_Pause,					spawn,	{.v = lockScreen }},
 	{ MODKEY,						XK_n,	   spawn,		   {.v = switchNvidia } },
 	{ MODKEY,						XK_i,	   spawn,		   {.v = switchIntel } },
 	{ MODKEY,						XK_z,	   spawn,		   {.v = extendDisplay } },
