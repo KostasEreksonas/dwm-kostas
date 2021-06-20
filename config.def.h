@@ -17,6 +17,8 @@ static const char *extendDisplay[] = { "/usr/bin/xrandr", "--output", "eDP-1-1",
 static const char *printScreen[] = { "/usr/bin/screenshot", NULL };
 /* Refers to a script that lets the user to select a portion of a screen to be saved in clipboard */
 static const char *screenClipboard[] = { "/usr/bin/screenshot_clipboard", NULL };
+/* Refers to a script that lets paste clipboard to a file in a preselected location */
+static const char *pasteClipboard[] = { "/usr/bin/paste_clipboard", NULL };
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
@@ -93,6 +95,7 @@ static Key keys[] = {
 	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  {.v = brightdown } },
 	{ 0,							XK_Print,					spawn,	{.v = printScreen } },
 	{ ShiftMask,					XK_Print,					spawn,	{.v = screenClipboard } },
+	{ MODKEY,						XK_Print,					spawn,	{.v = pasteClipboard } },
 	{ MODKEY,						XK_n,	   spawn,		   {.v = switchNvidia } },
 	{ MODKEY,						XK_i,	   spawn,		   {.v = switchIntel } },
 	{ MODKEY,						XK_z,	   spawn,		   {.v = extendDisplay } },
