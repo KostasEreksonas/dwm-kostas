@@ -11,8 +11,8 @@ Table of Contents
 Custom dwm build for my Linux install. I've decided to try out dynamic window manager and I will document my progress here.
 
 # Patches that I have applied
-* Alpha - for transparency;
-* Fullgaps - for gaps between windows.
+* [Alpha](../main/patches/dwm-alpha-20201019-61bb8b2.diff) - for transparency;
+* [Fullgaps](../main/patches/dwm-fullgaps-20200508-7b77734.diff) - for gaps between windows.
 
 # Keybindings
 In this section I will present keybindings that I use in my window manager.
