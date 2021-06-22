@@ -19,7 +19,7 @@ In this section I will present custom keybindings that I made for my build of _d
 
 <center>
 |		 Keybind		|				Function			|
-| --------------------- | --------------------------------- |
+|:---------------------:|:---------------------------------:|
 |	Fn + Down arrow		|	Lower volume					|
 |	Fn + Up arrow		|	Raise volume					|
 |	Fn + Left arrow		|	Lower brightness				|
