@@ -15,4 +15,19 @@ Custom dwm build for my Linux install. I've decided to try out dynamic window ma
 * [Fullgaps](../main/patches/dwm-fullgaps-20200508-7b77734.diff) - for gaps between windows.
 
 # Keybindings
-In this section I will present keybindings that I use in my window manager.
+In this section I will present custom keybindings that I made for my build of dynamic window manager.
+
+|		 Keybind		|				Function			|
+| --------------------- | --------------------------------- |
+|	Fn + Down arrow		|	Lower volume					|
+|	Fn + Up arrow		|	Raise volume					|
+|	Fn + Left arrow		|	Lower brightness				|
+|	Fn + Right arrow	|	Raise brightness				|
+|	PrintScreen			|	Take screenshot					|
+|	Shift + PrintScreen |	Copy screenshot to clipboard	|
+|	Mod + PrintScreen	|	Paste screenshot from clipboard	|
+|	Mod + Pause			|	Lock screen						|
+|	Mod + n				|	Switch to Nvidia GPU			|
+|	Mod + i				|	Switch to Intel GPU				|
+|	Mod + z				|	Extend displays					|
+| --------------------- | --------------------------------- |
