@@ -31,4 +31,4 @@ In this section I will present custom keybindings that I made for my build of _d
 |	Mod + i				|	Switch to ***Intel*** GPU'		|
 |	Mod + z				|	Extend displays					|
 
-' - I use `optimus-manager` for switching between GPU's.
+' - I use ***[optimus-manager](https://github.com/Askannz/optimus-manager)*** for switching between GPU's.
