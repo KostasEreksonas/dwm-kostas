@@ -17,7 +17,6 @@ Custom dwm build for my Linux install. I've decided to try out dynamic window ma
 # Keybindings
 In this section I will present custom keybindings that I made for my build of _dynamic window manager_.
 
-<center>
 |		 Keybind		|				Function			|
 |:---------------------:|:---------------------------------:|
 |	Fn + Down arrow		|	Lower volume					|
@@ -31,4 +30,3 @@ In this section I will present custom keybindings that I made for my build of _d
 |	Mod + n				|	Switch to ***Nvidia*** GPU		|
 |	Mod + i				|	Switch to ***Intel*** GPU		|
 |	Mod + z				|	Extend displays					|
-</center>
