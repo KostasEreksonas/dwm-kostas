@@ -12,7 +12,7 @@ static const char *switchNvidia[] = { "/usr/bin/optimus-manager", "--no-confirm"
 /* Switch to Intel GPU */
 static const char *switchIntel[] = { "/usr/bin/optimus-manager", "--no-confirm", "--switch", "intel", NULL };
 /* Extend to connected displays and move workspaces from disconnected ones */
-static const char *extendDisplay[] = { "/usr/bin/xrandr", "--output", "eDP-1-1", "--auto", "--output", "DP-1-1", "--right-of", "eDP-1-1", "--auto", NULL };
+static const char *extendDisplay[] = { "/usr/bin/xrandr", "--output", "eDP-1", "--auto", "DP-1", "--right-of", "eDP-1", "auto", "--output", "eDP-1-1", "--auto", "--output", "DP-1-1", "--right-of", "eDP-1-1", "--auto", NULL };
 /* Refers to a script that does a screenshot and saves it to a specified location */
 static const char *printScreen[] = { "/usr/bin/screenshot", NULL };
 /* Refers to a script that lets the user to select a portion of a screen to be saved in clipboard */
