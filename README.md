@@ -32,3 +32,25 @@ In this section I will present custom keybindings that I made for my build of _d
 |	Mod + z				|	Extend displays					|
 
 ' - I use ***[optimus-manager](https://github.com/Askannz/optimus-manager)*** for switching between GPU's.
+
+# Installation
+
+In this section I will add instructions how to install this my custom `dwm` build.
+
+1. Clone this git repository:
+
+`git clone https://github.com/KostasEreksonas/dwm-kostas.git`
+
+2. Go to the folder cloned repository:
+
+`cd dwm-kostas`
+
+3. Build the package:
+
+`make`
+
+4. Run a clean install of this package with root ***privilleges***:
+
+`make clean install`
+
+5. Done!
