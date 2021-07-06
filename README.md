@@ -54,7 +54,7 @@ In this section I will add instructions how to install this my custom `dwm` buil
 
 `make`
 
-4. Run a clean install of this package with root ***privilleges***:
+4. Run a clean install of this package with ***root*** privilleges:
 
 `make clean install`
 
