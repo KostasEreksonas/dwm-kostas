@@ -17,11 +17,11 @@ static const char *extendDisplayNvidia[] = { "/usr/bin/xrandr", "--output", "eDP
 /* Extend displays when external monitor is connected via HDMI */
 static const char *extendDisplayHDMI[] = { "/usr/bin/xrandr", "--output", "eDP-1", "--auto", "HDMI-1", "--right-of", "eDP-1", "auto", NULL };
 /* Refers to a script that does a screenshot and saves it to a specified location */
-static const char *printScreen[] = { "$HOME/bin/screenshot", NULL };
+static const char *printScreen[] = { "/usr/local/bin/screenshot", NULL };
 /* Refers to a script that lets the user to select a portion of a screen to be saved in clipboard */
-static const char *screenClipboard[] = { "$HOME/bin/screenshot_clipboard", NULL };
+static const char *screenClipboard[] = { "/usr/local/bin/screenshot_clipboard", NULL };
 /* Refers to a script that lets paste clipboard to a file in a preselected location */
-static const char *pasteClipboard[] = { "$HOME/paste_clipboard", NULL };
+static const char *pasteClipboard[] = { "/usr/local/bin/paste_clipboard", NULL };
 /* Lock screen */
 static const char *lockScreen[] = { "/usr/local/bin/slock", NULL };
 
@@ -60,7 +60,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
