@@ -12,10 +12,10 @@ static const char *switchNvidia[] = { "/usr/bin/optimus-manager", "--no-confirm"
 /* Switch to Intel GPU */
 static const char *switchIntel[] = { "/usr/bin/optimus-manager", "--no-confirm", "--switch", "intel", NULL };
 /* Extend to connected displays and move workspaces from disconnected ones */
-static const char *extendDisplayIntel[] = { "/usr/bin/xrandr", "--output", "eDP-1", "--auto", "DP-1", "--right-of", "eDP-1", "auto", NULL };
-static const char *extendDisplayNvidia[] = { "/usr/bin/xrandr", "--output", "eDP-1-1", "--auto", "--output", "DP-1-1", "--right-of", "eDP-1-1", "--auto", NULL };
+static const char *extendDisplayIntel[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "DP1", "--right-of", "eDP1", "auto", NULL };
+static const char *extendDisplayNvidia[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "DP1", "--right-of", "eDP1", "--auto", NULL };
 /* Extend displays when external monitor is connected via HDMI */
-static const char *extendDisplayHDMI[] = { "/usr/bin/xrandr", "--output", "eDP-1", "--auto", "HDMI-1", "--right-of", "eDP-1", "auto", NULL };
+static const char *extendDisplayHDMI[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "HDMI-1", "--right-of", "eDP1", "auto", NULL };
 /* Refers to a script that does a screenshot and saves it to a specified location */
 static const char *printScreen[] = { "/usr/local/bin/screenshot", NULL };
 /* Refers to a script that lets the user to select a portion of a screen to be saved in clipboard */
@@ -61,7 +61,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       0,       0,           -1 },
 };
 
 /* layout(s) */
