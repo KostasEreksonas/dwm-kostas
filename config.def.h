@@ -7,10 +7,6 @@ static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "togg
 /* brightness control */
 static const char *brightup[]   = { "/usr/bin/xbacklight", "-inc", "5", NULL };
 static const char *brightdown[] = { "/usr/bin/xbacklight", "-dec", "5", NULL };
-/* Switch to Nvidia GPU */
-static const char *switchNvidia[] = { "/usr/bin/optimus-manager", "--no-confirm", "--switch", "nvidia", NULL };
-/* Switch to Intel GPU */
-static const char *switchIntel[] = { "/usr/bin/optimus-manager", "--no-confirm", "--switch", "intel", NULL };
 /* Extend to connected displays and move workspaces from disconnected ones */
 static const char *extendDisplayIntel[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "DP1", "--right-of", "eDP1", "auto", NULL };
 static const char *extendDisplayNvidia[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "DP1", "--right-of", "eDP1", "--auto", NULL };
@@ -103,8 +99,6 @@ static Key keys[] = {
 	{ ShiftMask,                    XK_Print,                   spawn,  {.v = screenClipboard } },
 	{ MODKEY,                       XK_Print,                   spawn,  {.v = pasteClipboard } },
 	{ MODKEY,                       XK_Pause,                   spawn,  {.v = lockScreen }},
-	{ MODKEY,                       XK_n,      spawn,          {.v = switchNvidia } },
-	{ MODKEY,                       XK_i,      spawn,          {.v = switchIntel } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayIntel } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayNvidia } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayHDMI } },
