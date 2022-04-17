@@ -1,24 +1,16 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
-/* Sound control */
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
-/* brightness control */
-static const char *brightup[]   = { "/usr/bin/xbacklight", "-inc", "5", NULL };
-static const char *brightdown[] = { "/usr/bin/xbacklight", "-dec", "5", NULL };
-/* Switch to Nvidia GPU */
-static const char *switchNvidia[] = { "/usr/bin/optimus-manager", "--no-confirm", "--switch", "nvidia", NULL };
-/* Switch to Intel GPU */
-static const char *switchIntel[] = { "/usr/bin/optimus-manager", "--no-confirm", "--switch", "intel", NULL };
 /* Extend to connected displays and move workspaces from disconnected ones */
-static const char *extendDisplay[] = { "/usr/bin/xrandr", "--output", "eDP-1-1", "--auto", "--output", "DP-1-1", "--right-of", "eDP-1-1", "--auto", NULL };
+static const char *extendDisplayIntel[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "DP1", "--right-of", "eDP1", "auto", NULL };
+static const char *extendDisplayNvidia[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "DP1", "--right-of", "eDP1", "--auto", NULL };
+/* Extend displays when external monitor is connected via HDMI */
+static const char *extendDisplayHDMI[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "HDMI-1", "--right-of", "eDP1", "auto", NULL };
 /* Refers to a script that does a screenshot and saves it to a specified location */
-static const char *printScreen[] = { "/usr/bin/screenshot", NULL };
+static const char *printScreen[] = { "/usr/local/bin/screenshot", NULL };
 /* Refers to a script that lets the user to select a portion of a screen to be saved in clipboard */
-static const char *screenClipboard[] = { "/usr/bin/screenshot_clipboard", NULL };
+static const char *screenClipboard[] = { "/usr/local/bin/screenshot_clipboard", NULL };
 /* Refers to a script that lets paste clipboard to a file in a preselected location */
-static const char *pasteClipboard[] = { "/usr/bin/paste_clipboard", NULL };
+static const char *pasteClipboard[] = { "/usr/local/bin/paste_clipboard", NULL };
 /* Lock screen */
 static const char *lockScreen[] = { "/usr/local/bin/slock", NULL };
 
@@ -57,8 +49,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
+	{ "Firefox",  NULL,       NULL,       0,       0,           -1 },
 };
 
 /* layout(s) */
@@ -91,18 +83,18 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                            XF86XK_AudioLowerVolume,    spawn,  {.v = downvol } },
-	{ 0,                            XF86XK_AudioMute,           spawn,  {.v = mutevol } },
-	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  {.v = upvol   } },
-	{ 0,                            XF86XK_MonBrightnessUp,     spawn,  {.v = brightup } },
-	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  {.v = brightdown } },
+	{ 0,                            XF86XK_AudioMute,           spawn,  SHCMD("pactl set-sink-mute 0 toggle; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioLowerVolume,    spawn,  SHCMD("pactl set-sink-volume 0 -5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  SHCMD("pactl set-sink-volume 0 +5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  SHCMD("xbacklight -dec 5; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_MonBrightnessUp,     spawn,	SHCMD("xbacklight -inc 5; kill -44 $(pidof dwmblocks)") },
 	{ 0,                            XK_Print,                   spawn,  {.v = printScreen } },
 	{ ShiftMask,                    XK_Print,                   spawn,  {.v = screenClipboard } },
 	{ MODKEY,                       XK_Print,                   spawn,  {.v = pasteClipboard } },
 	{ MODKEY,                       XK_Pause,                   spawn,  {.v = lockScreen }},
-	{ MODKEY,                       XK_n,      spawn,          {.v = switchNvidia } },
-	{ MODKEY,                       XK_i,      spawn,          {.v = switchIntel } },
-	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplay } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayIntel } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayNvidia } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayHDMI } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -118,6 +110,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
