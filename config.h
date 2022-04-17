@@ -1,12 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
-/* Sound control */
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
-/* brightness control */
-static const char *brightup[]   = { "/usr/bin/xbacklight", "-inc", "5", NULL };
-static const char *brightdown[] = { "/usr/bin/xbacklight", "-dec", "5", NULL };
 /* Extend to connected displays and move workspaces from disconnected ones */
 static const char *extendDisplayIntel[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "DP1", "--right-of", "eDP1", "auto", NULL };
 static const char *extendDisplayNvidia[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "DP1", "--right-of", "eDP1", "--auto", NULL };
@@ -90,11 +83,11 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                            XF86XK_AudioLowerVolume,    spawn,  {.v = downvol } },
-	{ 0,                            XF86XK_AudioMute,           spawn,  {.v = mutevol } },
-	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  {.v = upvol   } },
-	{ 0,                            XF86XK_MonBrightnessUp,     spawn,  {.v = brightup } },
-	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  {.v = brightdown } },
+	{ 0,                            XF86XK_AudioMute,           spawn,  SHCMD("pactl set-sink-mute 0 toggle; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioLowerVolume,    spawn,  SHCMD("pactl set-sink-volume 0 -5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  SHCMD("pactl set-sink-volume 0 +5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  SHCMD("xbacklight -dec 5; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_MonBrightnessUp,     spawn,	SHCMD("xbacklight -inc 5; kill -44 $(pidof dwmblocks)") },
 	{ 0,                            XK_Print,                   spawn,  {.v = printScreen } },
 	{ ShiftMask,                    XK_Print,                   spawn,  {.v = screenClipboard } },
 	{ MODKEY,                       XK_Print,                   spawn,  {.v = pasteClipboard } },
