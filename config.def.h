@@ -50,7 +50,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
-	{ "Firefox",  NULL,       NULL,       0,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       0,	        0,           -1 },
 };
 
 /* layout(s) */
@@ -98,7 +98,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayNvidia } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayHDMI } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,		                XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
