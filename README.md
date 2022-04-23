@@ -32,8 +32,6 @@ In this section I will present custom keybindings that I made for my build of _d
 |	Shift + PrintScreen |	Copy screenshot to clipboard	|
 |	Mod + PrintScreen	|	Paste screenshot from clipboard	|
 |	Mod + Pause			|	Lock screen						|
-|	Mod + n				|	Switch to ***Nvidia*** GPU'		|
-|	Mod + i				|	Switch to ***Intel*** GPU'		|
 |	Mod + z				|	Extend displays					|
 
 ' - I use ***[optimus-manager](https://github.com/Askannz/optimus-manager)*** for switching between GPU's.
