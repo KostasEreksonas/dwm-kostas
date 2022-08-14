@@ -34,11 +34,7 @@ In this section I will present custom keybindings that I made for my build of _d
 |	Mod + Pause			|	Lock screen						|
 |	Mod + z				|	Extend displays					|
 
-' - I use ***[optimus-manager](https://github.com/Askannz/optimus-manager)*** for switching between GPU's.
-
 # Installation
-
-In this section I will add instructions how to install this my custom `dwm` build.
 
 1. Clone this git repository:
 
