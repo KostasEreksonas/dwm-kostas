@@ -1,10 +1,10 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 /* Extend to connected displays and move workspaces from disconnected ones */
-static const char *extendDisplayIntel[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "DP1", "--right-of", "eDP1", "auto", NULL };
+static const char *extendDisplayIntel[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "DP1", "--right-of", "eDP1", "auto", NULL };
 static const char *extendDisplayNvidia[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "DP1", "--right-of", "eDP1", "--auto", NULL };
 /* Extend displays when external monitor is connected via HDMI */
-static const char *extendDisplayHDMI[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "HDMI-1", "--right-of", "eDP1", "auto", NULL };
+static const char *extendDisplayHDMI[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "HDMI-1", "--right-of", "eDP1", "auto", NULL };
 /* Refers to a script that does a screenshot and saves it to a specified location */
 static const char *printScreen[] = { "/usr/local/bin/screenshot", NULL };
 /* Refers to a script that lets the user to select a portion of a screen to be saved in clipboard */
