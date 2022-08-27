@@ -33,6 +33,7 @@ In this section I will present custom keybindings that I made for my build of _d
 |	Mod + PrintScreen	|	Paste screenshot from clipboard	|
 |	Mod + Pause			|	Lock screen						|
 |	Mod + z				|	Extend displays					|
+|	Mod + s				|	Open default app for active tag	|
 
 # Installation
 
