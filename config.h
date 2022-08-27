@@ -93,7 +93,6 @@ static Key keys[] = {
 	{ 0,                            XF86XK_MonBrightnessUp,     spawn,	SHCMD("xbacklight -inc 5; kill -45 $(pidof dwmblocks)") },
 	{ 0,                            XK_Print,                   spawn,  {.v = printScreen } },
 	{ ShiftMask,                    XK_Print,                   spawn,  {.v = screenClipboard } },
-	{ MODKEY,                       XK_s,      spawndefault,   {0} },
 	{ MODKEY,                       XK_Print,                   spawn,  {.v = pasteClipboard } },
 	{ MODKEY,                       XK_Pause,                   spawn,  {.v = lockScreen }},
 	{ MODKEY,                       XK_s,      spawndefault,   {0} },
