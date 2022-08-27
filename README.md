@@ -1,19 +1,14 @@
 # dwm-kostas
 
-***Newpatch*** branch is used for applying new patches to `dwm` before merging them to the main branch. It's primary used as a fail-safe in case of errors.
+Custom build of suckless dynamic window manager for my Arch Linux install.
 
 Table of Contents
 =================
-* [dwm-kostas](#dwm-kostas)
-* [My custom dwm build](#My-custom-dwm-build)
-* [Patches that I have applied](#Patches-that-I-have-applied)
+* [Applied Patches](#Applied-Patches)
 * [Keybindings](#Keybindings)
 * [Installation](#Installation)
 
-# My custom dwm build
-Custom dwm build for my Linux install. I've decided to try out dynamic window manager and I will document my progress here.
-
-# Patches that I have applied
+# Applied Patches
 * [Alpha](https://dwm.suckless.org/patches/alpha/) - for transparency.
 * [Default Tag Apps](https://dwm.suckless.org/patches/default_tag_apps/) - dedicate each tag for certain tasks.
 * [Fullgaps](https://dwm.suckless.org/patches/fullgaps/) - for gaps between windows.
