@@ -96,6 +96,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      spawndefault,   {0} },
 	{ MODKEY,                       XK_Print,                   spawn,  {.v = pasteClipboard } },
 	{ MODKEY,                       XK_Pause,                   spawn,  {.v = lockScreen }},
+	{ MODKEY,                       XK_s,      spawndefault,   {0} },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayIntel } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayNvidia } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayHDMI } },
