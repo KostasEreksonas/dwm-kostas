@@ -14,7 +14,8 @@ Table of Contents
 Custom dwm build for my Linux install. I've decided to try out dynamic window manager and I will document my progress here.
 
 # Patches that I have applied
-* [Alpha](https://dwm.suckless.org/patches/alpha/) - for transparency;
+* [Alpha](https://dwm.suckless.org/patches/alpha/) - for transparency.
+* [Default Tag Apps](https://dwm.suckless.org/patches/default_tag_apps/) - dedicate each tag for certain tasks.
 * [Fullgaps](https://dwm.suckless.org/patches/fullgaps/) - for gaps between windows.
 * [Fullscreen](https://dwm.suckless.org/patches/fullscreen/) - dwm fullscreen patch.
 * [Warp](https://dwm.suckless.org/patches/warp/) - patch that warps mouse cursor to the center of the focused window.
