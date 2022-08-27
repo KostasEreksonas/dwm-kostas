@@ -13,6 +13,7 @@ Table of Contents
 * [Default Tag Apps](https://dwm.suckless.org/patches/default_tag_apps/) - dedicate each tag for certain tasks.
 * [Fullgaps](https://dwm.suckless.org/patches/fullgaps/) - for gaps between windows.
 * [Fullscreen](https://dwm.suckless.org/patches/fullscreen/) - dwm fullscreen patch.
+* [Hide Vacant Tags](https://dwm.suckless.org/patches/hide_vacant_tags/) - prevent dwm from drawing vacant tags.
 * [Warp](https://dwm.suckless.org/patches/warp/) - patch that warps mouse cursor to the center of the focused window.
 
 # Keybindings
