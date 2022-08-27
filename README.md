@@ -14,10 +14,10 @@ Table of Contents
 Custom dwm build for my Linux install. I've decided to try out dynamic window manager and I will document my progress here.
 
 # Patches that I have applied
-* [Alpha](../main/patches/dwm-alpha-20201019-61bb8b2.diff) - for transparency;
-* [Fullgaps](../main/patches/dwm-fullgaps-20200508-7b77734.diff) - for gaps between windows.
-* [Fullscreen](../main/patches/dwm-fullscreen-6.2.diff) - dwm fullscreen patch.
-* [Warp](../main/patches/dwm-warp-6.2.diff) - patch that warps mouse cursor to the center of the focused window.
+* [Alpha](https://dwm.suckless.org/patches/alpha/) - for transparency;
+* [Fullgaps](https://dwm.suckless.org/patches/fullgaps/) - for gaps between windows.
+* [Fullscreen](https://dwm.suckless.org/patches/fullscreen/) - dwm fullscreen patch.
+* [Warp](https://dwm.suckless.org/patches/warp/) - patch that warps mouse cursor to the center of the focused window.
 
 # Keybindings
 In this section I will present custom keybindings that I made for my build of _dynamic window manager_.
