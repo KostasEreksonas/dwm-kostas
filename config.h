@@ -41,7 +41,8 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "3", "4", "5", "6", "7", "8", "9" };
+static const char *defaulttagapps[] = { "st", "firefox", NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -94,6 +95,7 @@ static Key keys[] = {
 	{ ShiftMask,                    XK_Print,                   spawn,  {.v = screenClipboard } },
 	{ MODKEY,                       XK_Print,                   spawn,  {.v = pasteClipboard } },
 	{ MODKEY,                       XK_Pause,                   spawn,  {.v = lockScreen }},
+	{ MODKEY,                       XK_s,      spawndefault,   {0} },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayIntel } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayNvidia } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayHDMI } },

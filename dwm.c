@@ -214,6 +214,7 @@ static void showhide(Client *c);
 static void sigchld(int unused);
 static void sigstatusbar(const Arg *arg);
 static void spawn(const Arg *arg);
+static void spawndefault();
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tile(Monitor *);
@@ -285,6 +286,9 @@ static int useargb = 0;
 static Visual *visual;
 static int depth;
 static Colormap cmap;
+
+static int lastchosentag[8];
+static int previouschosentag[8];
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -450,9 +454,15 @@ buttonpress(XEvent *e)
 	}
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
-		do
+		unsigned int occ = 0;
+		for(c = m->clients; c; c=c->next)
+			occ |= c->tags;
+		do {
+			/* Do not reserve space for vacant tags */
+			if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+				continue;
 			x += TEXTW(tags[i]);
-		while (ev->x >= x && ++i < LENGTH(tags));
+		} while (ev->x >= x && ++i < LENGTH(tags));
 		if (i < LENGTH(tags)) {
 			click = ClkTagBar;
 			arg.ui = 1 << i;
@@ -764,13 +774,12 @@ drawbar(Monitor *m)
 	}
 	x = 0;
 	for (i = 0; i < LENGTH(tags); i++) {
+		/* Do not draw vacant tags */
+		if(!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+			continue;
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
-		if (occ & 1 << i)
-			drw_rect(drw, x + boxs, boxs, boxw, boxw,
-				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
-				urg & 1 << i);
 		x += w;
 	}
 	w = blw = TEXTW(m->ltsymbol);
@@ -1597,6 +1606,24 @@ fullscreen(const Arg *arg)
 }
 
 void
+setlasttag(int tagbit) {
+	const int mon = selmon->num;
+	if (tagbit > 0) {
+		int i = 1, pos = 0;
+		while (!(i & tagbit)) {
+			i = i << 1;
+			++pos;
+		}
+		previouschosentag[mon] = lastchosentag[mon];
+		lastchosentag[mon] = pos;
+	} else {
+		const int tempTag = lastchosentag[mon];
+		lastchosentag[mon] = previouschosentag[mon];
+		previouschosentag[mon] = tempTag;
+	}
+}
+
+void
 setlayout(const Arg *arg)
 {
 	if (!arg || !arg->v || arg->v != selmon->lt[selmon->sellt])
@@ -1767,6 +1794,17 @@ spawn(const Arg *arg)
 }
 
 void
+spawndefault()
+{
+	const char *app = defaulttagapps[lastchosentag[selmon->num]];
+	if (app) {
+		const char *defaultcmd[] = {app, NULL};
+		Arg a = {.v = defaultcmd};
+		spawn(&a);
+	}
+}
+
+void
 tag(const Arg *arg)
 {
 	if (selmon->sel && arg->ui & TAGMASK) {
@@ -1857,6 +1895,7 @@ toggleview(const Arg *arg)
 
 	if (newtagset) {
 		selmon->tagset[selmon->seltags] = newtagset;
+		setlasttag(newtagset);
 		focus(NULL);
 		arrange(selmon);
 	}
@@ -2172,6 +2211,7 @@ view(const Arg *arg)
 {
 	if ((arg->ui & TAGMASK) == selmon->tagset[selmon->seltags])
 		return;
+	setlasttag(arg->ui);
 	selmon->seltags ^= 1; /* toggle sel tagset */
 	if (arg->ui & TAGMASK)
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
