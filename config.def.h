@@ -42,7 +42,7 @@ static const unsigned int alphas[][3]      = {
 
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "6", "7", "8", "9" };
-static const char *defaulttagapps[] = { "st", "firefox", "darktable", "$TERMINAL vim", "$TERMINAL ranger", NULL, NULL, NULL, NULL };
+static const char *defaulttagapps[] = { "st", "firefox", "darktable", "openvim", "openranger", NULL, NULL, NULL, NULL };
 
 static const Rule rules[] = {
 	/* xprop(1):
