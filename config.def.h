@@ -20,8 +20,8 @@ static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Hack Nerd Font Mono:pixelsize=15;antialias=true;autohint=true" };
-static const char dmenufont[]       = "Hack Nerd Font Mono:pixelsize=15;antialias=true;autohint=true";
+static const char *fonts[]          = { "Hack Nerd Font Mono:style=Regular:pixelsize=15:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Hack Nerd Font Mono:style=Regular:pixelsize=15:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -86,9 +86,9 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                            XF86XK_AudioMute,           spawn,  SHCMD("pactl set-sink-mute 0 toggle; kill -44 $(pidof dwmblocks)") },
-	{ 0,                            XF86XK_AudioLowerVolume,    spawn,  SHCMD("pactl set-sink-volume 0 -5%; kill -44 $(pidof dwmblocks)") },
-	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  SHCMD("pactl set-sink-volume 0 +5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioMute,           spawn,  SHCMD("pactl set-sink-mute 1 toggle; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioLowerVolume,    spawn,  SHCMD("pactl set-sink-volume 1 -5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  SHCMD("pactl set-sink-volume 1 +5%; kill -44 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  SHCMD("xbacklight -dec 5; kill -45 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_MonBrightnessUp,     spawn,	SHCMD("xbacklight -inc 5; kill -45 $(pidof dwmblocks)") },
 	{ 0,                            XK_Print,                   spawn,  {.v = printScreen } },
