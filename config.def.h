@@ -41,8 +41,8 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "ﭮ" };
-static const char *defaulttagapps[] = { "st", "firefox", "phpstorm", "darktable", "open-ranger", "open-mutt", "gimp", "teams", "discord" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "ﭮ" };
+static const char *defaulttagapps[] = { "st", "firefox", "phpstorm", "darktable", "open-ranger", "open-mutt", "gimp", "pycharm", "discord" };
 
 static const Rule rules[] = {
 	/* xprop(1):
