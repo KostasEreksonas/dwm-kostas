@@ -43,7 +43,7 @@ static const unsigned int alphas[][3]      = {
 
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "", "", "", "ﭮ" };
-static const char *defaulttagapps[] = { "st", "firefox", "phpstorm", "darktable", "open-ranger", "open-mutt", "gimp", "pycharm", "discord" };
+static const char *defaulttagapps[] = { "st", "firefox", "phpstorm", "darktable", "open-lf", "open-mutt", "gimp", "pycharm", "discord" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -52,8 +52,9 @@ static const Rule rules[] = {
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "firefox", NULL,     NULL,           0,    0,          0,          -1,        -1 },
 	{ "st",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "lf",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
