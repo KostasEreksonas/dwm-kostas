@@ -50,5 +50,6 @@ In this section I will present custom keybindings that I made for my build of _d
 * [Default Tag Apps](https://dwm.suckless.org/patches/default_tag_apps/)
 * [Fullgaps](https://dwm.suckless.org/patches/fullgaps/)
 * [Hide Vacant Tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
+* [Statuscmd](https://dwm.suckless.org/patches/statuscmd/)
 * [Swallow](https://dwm.suckless.org/patches/swallow/)
 * [Warp](https://dwm.suckless.org/patches/warp/)
