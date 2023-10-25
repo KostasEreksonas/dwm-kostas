@@ -1,4 +1,4 @@
-# dwm-kostas
+# dwm-kostas-6.2
 
 Custom build of suckless dynamic window manager for my Arch Linux install.
 
