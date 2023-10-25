@@ -1,4 +1,18 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
+/* Extend to connected displays and move workspaces from disconnected ones */
+static const char *extendDisplayIntel[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "DP1", "--right-of", "eDP1", "--auto", NULL };
+static const char *extendDisplayNvidia[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "DP1", "--right-of", "eDP1", "--auto", NULL };
+/* Extend displays when external monitor is connected via HDMI */
+static const char *extendDisplayHDMI[] = { "/usr/bin/xrandr", "--output", "eDP1", "--auto", "--output", "HDMI-0", "--right-of", "eDP1", "--auto", NULL };
+/* Refers to a script that does a screenshot and saves it to a specified location */
+static const char *printScreen[] = { "/usr/local/bin/screenshot", NULL };
+/* Refers to a script that lets the user to select a portion of a screen to be saved in clipboard */
+static const char *screenClipboard[] = { "/usr/local/bin/screenshot_clipboard", NULL };
+/* Refers to a script that lets paste clipboard to a file in a preselected location */
+static const char *pasteClipboard[] = { "/usr/local/bin/paste_clipboard", NULL };
+/* Lock screen */
+static const char *lockScreen[] = { "/usr/local/bin/slock", NULL };
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -7,8 +21,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "Hack Nerd Font Mono:style=Regular:pixelsize=15:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Hack Nerd Font Mono:style=Regular:pixelsize=15:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -28,8 +42,8 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *defaulttagapps[] = { "st", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "ﭮ" };
+static const char *defaulttagapps[] = { "st", "firefox", "phpstorm", "darktable", "open-lf", "open-mutt", "gimp", "pycharm", "discord" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -37,9 +51,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "st",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -73,6 +87,19 @@ static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ 0,                            XF86XK_AudioMute,           spawn,  SHCMD("pactl set-sink-mute 1 toggle; kill -44 $(pidof dwmblocks)") },
+    { 0,                            XF86XK_AudioLowerVolume,    spawn,  SHCMD("pactl set-sink-volume 1 -5%; kill -44 $(pidof dwmblocks)") },
+    { 0,                            XF86XK_AudioRaiseVolume,    spawn,  SHCMD("pactl set-sink-volume 1 +5%; kill -44 $(pidof dwmblocks)") },
+    { 0,                            XF86XK_MonBrightnessDown,   spawn,  SHCMD("xbacklight -dec 5; kill -45 $(pidof dwmblocks)") },
+    { 0,                            XF86XK_MonBrightnessUp,     spawn,      SHCMD("xbacklight -inc 5; kill -45 $(pidof dwmblocks)") },
+    { 0,                            XK_Print,                   spawn,  {.v = printScreen } },
+    { ShiftMask,                    XK_Print,                   spawn,  {.v = screenClipboard } },
+    { MODKEY,                       XK_Print,                   spawn,  {.v = pasteClipboard } },
+    { MODKEY,                       XK_Pause,                   spawn,  {.v = lockScreen }},
+    { MODKEY,                       XK_s,      spawndefault,   {0} },
+    { MODKEY,                       XK_z,      spawn,          {.v = extendDisplayIntel } },
+    { MODKEY,                       XK_z,      spawn,          {.v = extendDisplayNvidia } },
+    { MODKEY,                       XK_z,      spawn,          {.v = extendDisplayHDMI } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_s,      spawndefault,   {0} },
