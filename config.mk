@@ -1,11 +1,12 @@
 # dwm version
-VERSION = 6.4
+VERSION = 6.2
 
 # Customize below to fit your system
 
 # paths
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
+#KVMLIB = -lkvm
 
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
@@ -19,8 +20,6 @@ FREETYPELIBS = -lfontconfig -lXft
 FREETYPEINC = /usr/include/freetype2
 # OpenBSD (uncomment)
 #FREETYPEINC = ${X11INC}/freetype2
-#MANPREFIX = ${PREFIX}/man
-#KVMLIB = -lkvm
 
 # includes and libs
 INCS = -I${X11INC} -I${FREETYPEINC}

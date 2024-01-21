@@ -1,4 +1,4 @@
-# dwm-kostas
+# dwm-kostas-6.2
 
 Custom build of suckless dynamic window manager for my Arch Linux install.
 
@@ -46,10 +46,9 @@ In this section I will present custom keybindings that I made for my build of _d
 
 # Applied Patches
 
-* [Alpha](https://dwm.suckless.org/patches/alpha/)
-* [Default Tag Apps](https://dwm.suckless.org/patches/default_tag_apps/)
-* [Fullgaps](https://dwm.suckless.org/patches/fullgaps/)
-* [Hide Vacant Tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
-* [Statuscmd](https://dwm.suckless.org/patches/statuscmd/)
-* [Swallow](https://dwm.suckless.org/patches/swallow/)
-* [Warp](https://dwm.suckless.org/patches/warp/)
+* [Alpha](https://dwm.suckless.org/patches/alpha/) - for transparency.
+* [Default Tag Apps](https://dwm.suckless.org/patches/default_tag_apps/) - dedicate each tag for certain tasks.
+* [Fullgaps](https://dwm.suckless.org/patches/fullgaps/) - for gaps between windows.
+* [Fullscreen](https://dwm.suckless.org/patches/fullscreen/) - dwm fullscreen patch.
+* [Hide Vacant Tags](https://dwm.suckless.org/patches/hide_vacant_tags/) - prevent dwm from drawing vacant tags.
+* [Warp](https://dwm.suckless.org/patches/warp/) - patch that warps mouse cursor to the center of the focused window.

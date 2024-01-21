@@ -36,8 +36,8 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 static const unsigned int alphas[][3]      = {
-    /*               fg      bg        border*/
-    [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	/*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
@@ -52,8 +52,9 @@ static const Rule rules[] = {
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "firefox", NULL,     NULL,           0,	      0,          0,          -1,        -1 },
+	{ "firefox", NULL,     NULL,           0,    0,          0,          -1,        -1 },
 	{ "st",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "lf",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -61,7 +62,6 @@ static const Rule rules[] = {
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -80,31 +80,31 @@ static const Layout layouts[] = {
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-#define STATUSBAR "dwmblocks"
 
 #define STATUSBAR "dwmblocks"
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-c", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
-static const Key keys[] = {
+static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ 0,                            XF86XK_AudioMute,           spawn,  SHCMD("pactl set-sink-mute 1 toggle; kill -44 $(pidof dwmblocks)") },
-    { 0,                            XF86XK_AudioLowerVolume,    spawn,  SHCMD("pactl set-sink-volume 1 -5%; kill -44 $(pidof dwmblocks)") },
-    { 0,                            XF86XK_AudioRaiseVolume,    spawn,  SHCMD("pactl set-sink-volume 1 +5%; kill -44 $(pidof dwmblocks)") },
-    { 0,                            XF86XK_MonBrightnessDown,   spawn,  SHCMD("xbacklight -dec 5; kill -45 $(pidof dwmblocks)") },
-    { 0,                            XF86XK_MonBrightnessUp,     spawn,      SHCMD("xbacklight -inc 5; kill -45 $(pidof dwmblocks)") },
-    { 0,                            XK_Print,                   spawn,  {.v = printScreen } },
-    { ShiftMask,                    XK_Print,                   spawn,  {.v = screenClipboard } },
-    { MODKEY,                       XK_Print,                   spawn,  {.v = pasteClipboard } },
-    { MODKEY,                       XK_Pause,                   spawn,  {.v = lockScreen }},
-    { MODKEY,                       XK_s,      spawndefault,   {0} },
-    { MODKEY,                       XK_z,      spawn,          {.v = extendDisplayIntel } },
-    { MODKEY,                       XK_z,      spawn,          {.v = extendDisplayNvidia } },
-    { MODKEY,                       XK_z,      spawn,          {.v = extendDisplayHDMI } },
+	{ 0,                            XF86XK_AudioLowerVolume,    spawn,  SHCMD("pactl set-sink-volume 1 -5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  SHCMD("pactl set-sink-volume 1 +5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  SHCMD("xbacklight -dec 5; kill -45 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_MonBrightnessUp,     spawn,	SHCMD("xbacklight -inc 5; kill -45 $(pidof dwmblocks)") },
+	{ 0,                            XK_Print,                   spawn,  {.v = printScreen } },
+	{ ShiftMask,                    XK_Print,                   spawn,  {.v = screenClipboard } },
+	{ MODKEY,                       XK_Print,                   spawn,  {.v = pasteClipboard } },
+	{ MODKEY,                       XK_Pause,                   spawn,  {.v = lockScreen }},
+	{ MODKEY,                       XK_s,      spawndefault,   {0} },
+	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayIntel } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayNvidia } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = extendDisplayHDMI } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,		                XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -118,6 +118,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -143,7 +144,7 @@ static const Key keys[] = {
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static const Button buttons[] = {
+static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
