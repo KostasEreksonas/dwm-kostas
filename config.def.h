@@ -90,9 +90,9 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ 0,                            XF86XK_AudioMute,           spawn,  SHCMD("pactl set-sink-mute $(pactl list sinks | awk 'NR==1{print $2}' | tr -d '#') toggle; kill -44 $(pidof dwmblocks)") },
-	{ 0,                            XF86XK_AudioLowerVolume,    spawn,  SHCMD("pactl set-sink-volume $(pactl list sinks | awk 'NR==1{print $2}' | tr -d '#') -5%; kill -44 $(pidof dwmblocks)") },
-	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  SHCMD("pactl set-sink-volume $(pactl list sinks | awk 'NR==1{print $2}' | tr -d '#') +5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioMute,           spawn,  SHCMD("pactl set-sink-mute $(get-active-sink) toggle; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioLowerVolume,    spawn,  SHCMD("pactl set-sink-volume $(get-active-sink) -5%; kill -44 $(pidof dwmblocks)") },
+	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,  SHCMD("pactl set-sink-volume $(get-active-sink) +5%; kill -44 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_MonBrightnessDown,   spawn,  SHCMD("xbacklight -dec 5; kill -45 $(pidof dwmblocks)") },
 	{ 0,                            XF86XK_MonBrightnessUp,     spawn,	SHCMD("xbacklight -inc 5; kill -45 $(pidof dwmblocks)") },
 	{ 0,                            XK_Print,                   spawn,  {.v = printScreen } },
