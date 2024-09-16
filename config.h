@@ -8,9 +8,9 @@ static const char *extendDisplayHDMI[] = { "/usr/bin/xrandr", "--output", "eDP1"
 /* Refers to a script that does a screenshot and saves it to a specified location */
 static const char *printScreen[] = { "/usr/local/bin/screenshot", NULL };
 /* Refers to a script that lets the user to select a portion of a screen to be saved in clipboard */
-static const char *screenClipboard[] = { "/usr/local/bin/screenshot_clipboard", NULL };
+static const char *screenClipboard[] = { "/usr/local/bin/screenshot-clipboard", NULL };
 /* Refers to a script that lets paste clipboard to a file in a preselected location */
-static const char *pasteClipboard[] = { "/usr/local/bin/paste_clipboard", NULL };
+static const char *pasteClipboard[] = { "/usr/local/bin/paste-clipboard", NULL };
 /* Lock screen */
 static const char *lockScreen[] = { "/usr/local/bin/slock", NULL };
 
